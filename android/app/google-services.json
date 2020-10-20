@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "874785279557",
+    "firebase_url": "https://myfood-app-67fcc.firebaseio.com",
+    "project_id": "myfood-app-67fcc",
+    "storage_bucket": "myfood-app-67fcc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:874785279557:android:a9b96171f62d984bebdd2c",
+        "android_client_info": {
+          "package_name": "com.example.myfood_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "874785279557-5s6dudu7njqpvitollh1iclacagpahto.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbpYNZw_UQV76d-yVoMliQNAKdfnsfh5s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "874785279557-5s6dudu7njqpvitollh1iclacagpahto.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
