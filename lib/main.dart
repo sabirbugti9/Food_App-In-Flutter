@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:myfood_app/screens/profile_screen.dart';
-import 'package:myfood_app/screens/signup.dart';
-import 'package:myfood_app/screens/skip_screen.dart';
+import 'package:myfood_app/screens/detail_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,7 +33,7 @@ class MyApp extends StatelessWidget {
       //     }
       //   },
       // ),
-      home: ProfileScreen(),
+      home: DetailScreen(),
     );
   }
 }

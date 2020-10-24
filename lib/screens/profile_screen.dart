@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:myfood_app/screens/homepage.dart';
 import 'package:myfood_app/widget/mybutton.dart';
 import 'package:myfood_app/widget/mypasswordtextformfield.dart';
@@ -20,6 +23,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   static String p =
       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
   static RegExp regExp = new RegExp(p);
+  File image;
+  Future<void> getImage({ImageSource imageSource}) async {
+    PickedFile pickedFile = await ImagePicker().getImage(source: imageSource);
+    if (pickedFile != null) {
+      image = File(pickedFile.path);
+    }
+  }
+
   void vaildation() {
     if (email.text.isEmpty &&
         password.text.isEmpty &&
@@ -74,6 +85,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       );
     } else {}
+  }
+
+  Future<void> myDialogueBox() {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      child: Builder(builder: (BuildContext context) {
+        return AlertDialog(
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: [
+                ListTile(
+                  leading: Icon(Icons.camera),
+                  title: Text("Camera"),
+                  onTap: () {
+                    getImage(
+                      imageSource: ImageSource.camera,
+                    );
+                    Navigator.of(context).pop();
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.album),
+                  title: Text("Gallery"),
+                  onTap: () {
+                    getImage(
+                      imageSource: ImageSource.gallery,
+                    );
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            ),
+          ),
+        );
+      }),
+    );
   }
 
   final GlobalKey<ScaffoldState> scaffold = GlobalKey<ScaffoldState>();
@@ -252,18 +300,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ],
             ),
-            Positioned(
-              top: 180,
-              left: 250,
-              child: CircleAvatar(
-                backgroundColor: Colors.white,
-                maxRadius: 20,
-                child: Icon(
-                  Icons.edit,
-                  color: Colors.black,
-                ),
-              ),
-            ),
+            isEdit != false
+                ? Positioned(
+                    top: 180,
+                    left: 250,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      maxRadius: 20,
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.edit,
+                          color: Colors.black,
+                        ),
+                        onPressed: () {
+                          myDialogueBox();
+                        },
+                      ),
+                    ),
+                  )
+                : Container(),
           ],
         ),
       ),
